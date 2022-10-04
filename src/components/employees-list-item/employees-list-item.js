@@ -3,15 +3,7 @@ import PropTypes from "prop-types";
 import "./employees-list-item.css";
 
 const EmployeesListItem = (props) => {
-  const {
-    name,
-    salary,
-    onDelete,
-    onToggleIncrease,
-    onToggleRise,
-    increase,
-    rise,
-  } = props;
+  const { name, salary, onDelete, onToggleProp, increase, rise } = props;
 
   let classNames = "list-group-item d-flex justify-content-between";
   if (increase) {
@@ -24,7 +16,11 @@ const EmployeesListItem = (props) => {
 
   return (
     <li className={classNames}>
-      <span className="list-group-item-label" onClick={onToggleRise}>
+      <span
+        className="list-group-item-label"
+        onClick={onToggleProp}
+        data-toggle="rise"
+      >
         {name}
       </span>
       <input
@@ -36,7 +32,8 @@ const EmployeesListItem = (props) => {
         <button
           type="button"
           className="btn-cookie btn-sm "
-          onClick={onToggleIncrease}
+          data-toggle="increase"
+          onClick={onToggleProp}
         >
           <i className="fas fa-cookie"></i>
         </button>
@@ -56,8 +53,7 @@ EmployeesListItem.propTypes = {
   increase: PropTypes.bool.isRequired,
   rise: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onToggleIncrease: PropTypes.func.isRequired,
-  onToggleRise: PropTypes.func.isRequired,
+  onToggleProp: PropTypes.func.isRequired,
 };
 
 export default EmployeesListItem;

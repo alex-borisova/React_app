@@ -3,7 +3,7 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 import "./employees-list.css";
 import PropTypes from "prop-types";
 
-const EmployeesList = ({ data, onDelete, onToggleIncrease, onToggleRise }) => {
+const EmployeesList = ({ data, onDelete, onToggleProp }) => {
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
     return (
@@ -11,8 +11,9 @@ const EmployeesList = ({ data, onDelete, onToggleIncrease, onToggleRise }) => {
         {...itemProps}
         key={id}
         onDelete={() => onDelete(id)}
-        onToggleIncrease={() => onToggleIncrease(id)}
-        onToggleRise={() => onToggleRise(id)}
+        onToggleProp={(e) =>
+          onToggleProp(id, e.currentTarget.getAttribute("data-toggle"))
+        }
       />
     );
   });
@@ -22,8 +23,7 @@ const EmployeesList = ({ data, onDelete, onToggleIncrease, onToggleRise }) => {
 EmployeesList.propTypes = {
   data: PropTypes.array.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onToggleIncrease: PropTypes.func.isRequired,
-  onToggleRise: PropTypes.func.isRequired,
+  onToggleProp: PropTypes.func.isRequired,
 };
 
 export default EmployeesList;
